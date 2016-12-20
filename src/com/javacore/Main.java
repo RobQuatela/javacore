@@ -3,6 +3,8 @@ package com.javacore;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -53,6 +55,29 @@ public class Main {
 	
 	public static void main(String[] args) {
 		//doTryCatchFinallyMulti();
-		doCloseThing();
+		//doCloseThing();
+		
+		//regex practice replace @ end of word
+		String s1 = "apple, apple and orange please";
+		String s2 = s1.replaceAll("ple\\b", "ricot");
+		
+		//regex using split and match methods
+		String[] parts = s1.split("\\b");
+		
+		for(String part : parts) {
+			if(part.matches("\\w+"))
+				System.out.println(part);
+		}
+		
+		System.out.println(s1);
+		System.out.println(s2);
+		
+		//using pattern and matcher classes
+		Pattern pattern = Pattern.compile("\\w+");
+		Matcher matcher = pattern.matcher(s1);
+		
+		while(matcher.find()) {
+			System.out.println(matcher.group());
+		}
 	}
 }
